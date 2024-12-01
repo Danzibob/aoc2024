@@ -18,7 +18,7 @@ pub fn solve_part1(input: &str) -> usize {
 
 #[aoc(day1, part2)]
 pub fn solve_part2(input: &str) -> usize {
-    let (a, mut b): (Vec<usize>, Vec<usize>) = input
+    let (a, b): (Vec<usize>, Vec<usize>) = input
     .lines()
     .map(|l| {
         let mut nums = l.split_ascii_whitespace().map(|n|
@@ -27,10 +27,8 @@ pub fn solve_part2(input: &str) -> usize {
         (nums.next().unwrap(), nums.next().unwrap())
     }).unzip();
 
-    b.sort_unstable();
-
     a.iter().map(|x| 
-        x * b.iter().filter(|&y| y==x).count()
+        x * b.iter().take_while(|&y| y==x).count()
     ).sum::<usize>()
 }
 
