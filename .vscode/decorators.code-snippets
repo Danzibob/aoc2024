@@ -5,7 +5,8 @@
 		"body": [
 			"#[aoc($TM_FILENAME_BASE, part${1|1,2|})]",
 			"pub fn solve_part$1(input: &str) -> ${3|usize,u32,u64|} {",
-			"$0",
+			"\t$0",
+			"\t0",
 			"}"
 		],
 		"description": "Solve macro for all AoC files, using chars as input"
@@ -17,6 +18,7 @@
 			"#[aoc($TM_FILENAME_BASE, part${1|1,2|}, Bytes)]",
 			"pub fn solve_part$1(input: &[u8]) -> ${3|usize,u32,u64|} {",
 			"$0",
+			"\t0",
 			"}"
 		],
 		"description": "Solve macro for all AoC files, using bytes as input"
@@ -51,7 +53,7 @@
 			"mod tests {",
 			"    use super::*;",
 			"",
-			"    const TEST_INPUT:&str = include_str!(\\\"../test_input/$CURRENT_YEAR/$TM_FILENAME_BASE.txt\\\");",
+			"    const TEST_INPUT:&str = include_str!(\"../test_input/$CURRENT_YEAR/$TM_FILENAME_BASE.txt\");",
 			"",
 			"    #[test]",
 			"    fn $1() {",
