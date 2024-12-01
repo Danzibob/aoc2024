@@ -1,0 +1,63 @@
+{
+	"Solver Decorator": {
+		"scope": "rust",
+		"prefix": ["solve"],
+		"body": [
+			"#[aoc($TM_FILENAME_BASE, part${1|1,2|})]",
+			"pub fn solve_part$1(input: &str) -> ${3|usize,u32,u64|} {",
+			"$0",
+			"}"
+		],
+		"description": "Solve macro for all AoC files, using chars as input"
+	},
+	"Solver Decorator (Bytes)": {
+		"scope": "rust",
+		"prefix": ["solve (bytes)"],
+		"body": [
+			"#[aoc($TM_FILENAME_BASE, part${1|1,2|}, Bytes)]",
+			"pub fn solve_part$1(input: &[u8]) -> ${3|usize,u32,u64|} {",
+			"$0",
+			"}"
+		],
+		"description": "Solve macro for all AoC files, using bytes as input"
+	},
+	"Generator Decorator": {
+		"scope": "rust",
+		"prefix": ["gen","generator"],
+		"body": [
+			"#[aoc_generator($TM_FILENAME_BASE)]",
+			"pub fn input_generator(input: &str) -> $1 {",
+			"$0",
+			"}"
+		]
+	},
+	"Generator Decorator (Bytes)": {
+		"scope": "rust",
+		"prefix": ["gen (bytes)","generator (bytes)"],
+		"body": [
+			"#[aoc_generator($TM_FILENAME_BASE, Bytes)]",
+			"pub fn input_generator(input: &[u8]) -> $1 {",
+			"$0",
+			"}"
+		]
+	},
+	"Test Suite": {
+		"scope": "rust",
+		"prefix": [
+			"mod tests"
+		],
+		"body": [
+			"#[cfg(test)]",
+			"mod tests {",
+			"    use super::*;",
+			"",
+			"    const TEST_INPUT:&str = include_str!(\\\"../test_input/$CURRENT_YEAR/$TM_FILENAME_BASE.txt\\\");",
+			"",
+			"    #[test]",
+			"    fn $1() {",
+			"        $0",
+			"    }",
+			"}"
+		]
+	}
+}
