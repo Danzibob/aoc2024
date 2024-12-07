@@ -3,39 +3,41 @@ use std::iter::zip;
 #[aoc(day1, part1)]
 pub fn solve_part1(input: &str) -> usize {
     let (mut a, mut b): (Vec<isize>, Vec<isize>) = input
-    .lines()
-    .map(|l| {
-        let mut nums = l.split_ascii_whitespace().map(|n|
-            n.parse::<isize>().expect("Failed to parse an int")
-        );
-        (nums.next().unwrap(), nums.next().unwrap())
-    }).unzip();
+        .lines()
+        .map(|l| {
+            let mut nums = l
+                .split_ascii_whitespace()
+                .map(|n| n.parse::<isize>().expect("Failed to parse an int"));
+            (nums.next().unwrap(), nums.next().unwrap())
+        })
+        .unzip();
 
     a.sort_unstable();
     b.sort_unstable();
-    zip(a,b).map(|(a,b)| (a-b).abs()).sum::<isize>() as usize
+    zip(a, b).map(|(a, b)| (a - b).abs()).sum::<isize>() as usize
 }
 
 #[aoc(day1, part2)]
 pub fn solve_part2(input: &str) -> usize {
     let (a, b): (Vec<usize>, Vec<usize>) = input
-    .lines()
-    .map(|l| {
-        let mut nums = l.split_ascii_whitespace().map(|n|
-            n.parse::<usize>().expect("Failed to parse an int")
-        );
-        (nums.next().unwrap(), nums.next().unwrap())
-    }).unzip();
+        .lines()
+        .map(|l| {
+            let mut nums = l
+                .split_ascii_whitespace()
+                .map(|n| n.parse::<usize>().expect("Failed to parse an int"));
+            (nums.next().unwrap(), nums.next().unwrap())
+        })
+        .unzip();
 
-    a.iter().map(|x| 
-        x * b.iter().take_while(|&y| y==x).count()
-    ).sum::<usize>()
+    a.iter()
+        .map(|x| x * b.iter().take_while(|&y| y == x).count())
+        .sum::<usize>()
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    const TEST_INPUT:&str = include_str!("../test_input/2024/day1.txt");
+    const TEST_INPUT: &str = include_str!("../test_input/2024/day1.txt");
 
     #[test]
     fn test_part1() {
